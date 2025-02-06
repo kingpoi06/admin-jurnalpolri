@@ -29,14 +29,12 @@ export default function Dashboard() {
         };
 
         // Fetch all totals in parallel
-        const [newsResponse, photoResponse, videoResponse] = await Promise.all([
+        const [newsResponse] = await Promise.all([
           axiosInstance.get("/news", { headers }),
         ]);
 
         // Set total counts
         setTotalNews(newsResponse.data.length || 0);
-        setTotalPhotos(photoResponse.data.length || 0);
-        setTotalVideos(videoResponse.data.length || 0);
       } catch (error) {
         console.error("Error fetching totals:", error);
       } finally {
@@ -49,7 +47,7 @@ export default function Dashboard() {
 
   // Data untuk grafik
   const data = {
-    labels: ["Total Berita", "Total Foto", "Total Video"], // Label untuk grafik
+    labels: ["Total Berita"], // Label untuk grafik
     datasets: [
       {
         label: "Jumlah Konten",
